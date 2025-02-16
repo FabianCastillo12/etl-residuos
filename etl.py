@@ -88,11 +88,11 @@ def create_dimensions(df_merged):
     dim_ubicacion = df_merged[['UBIGEO', 'DEPARTAMENTO', 'PROVINCIA', 'DISTRITO', 'REGION_NATURAL']].drop_duplicates().reset_index(drop=True)
     dim_ubicacion['UBICACION_ID'] = dim_ubicacion.index + 1
 
-    # Dimensión de Municipalidad (sin UBIGEO)
+    # Dimensión de Municipalidad 
     dim_municipalidad = df_merged[['TIPO_MUNICIPALIDAD', 'CLASIFICACION_MUNICIPAL_MEF']].drop_duplicates().reset_index(drop=True)
     dim_municipalidad['MUNICIPALIDAD_ID'] = dim_municipalidad.index + 1
 
-    # Dimensión de Demografía (sin UBIGEO)
+    # Dimensión de Demografía 
     dim_demografia = df_merged[['POB_TOTAL_INEI', 'POB_URBANA_INEI', 'POB_RURAL_INEI']].drop_duplicates().reset_index(drop=True)
     dim_demografia['DEMOGRAFIA_ID'] = dim_demografia.index + 1
 
@@ -216,6 +216,13 @@ def main():
 
     # Generar el diagrama ER
     generate_er_diagram()
+
+    fact_final.to_csv("fact_final.csv", index=False)
+    dim_tiempo.to_csv("dim_tiempo.csv", index=False)
+    dim_ubicacion.to_csv("dim_ubicacion.csv", index=False)
+    dim_municipalidad.to_csv("dim_municipalidad.csv", index=False)
+    dim_demografia.to_csv("dim_demografia.csv", index=False)
+    dim_sitio.to_csv("dim_sitio.csv", index=False)
 
 if __name__ == "__main__":
     main()
