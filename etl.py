@@ -100,6 +100,7 @@ def create_dimensions(df_merged):
     dim_sitio = df_merged[['TIPO_SITIO_DISPOSICION_FINAL_ADECUADA',
                            'NOMBRE_SITIO_DISPOSICION_FINAL_ADECUADA',
                            'TIPO_ADMINISTRADOR_SITIO_DISPOSICION_FINAL_ADECUADA']].drop_duplicates().reset_index(drop=True)
+    dim_sitio[["NOMBRE_SITIO_DISPOSICION_FINAL_ADECUADA","TIPO_ADMINISTRADOR_SITIO_DISPOSICION_FINAL_ADECUADA"]] = dim_sitio[["NOMBRE_SITIO_DISPOSICION_FINAL_ADECUADA","TIPO_ADMINISTRADOR_SITIO_DISPOSICION_FINAL_ADECUADA"]].fillna("NO ESPECIFICADO")
     dim_sitio['SITIO_DISPOSICION_ID'] = dim_sitio.index + 1
 
     # Mostrar dimensiones
