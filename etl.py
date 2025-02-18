@@ -138,10 +138,14 @@ def create_fact_table(df_merged, dim_tiempo, dim_ubicacion, dim_municipalidad, d
                                      'NOMBRE_SITIO_DISPOSICION_FINAL_ADECUADA',
                                      'TIPO_ADMINISTRADOR_SITIO_DISPOSICION_FINAL_ADECUADA'], how='left')
 
+    fact['SITIO_DISPOSICION_ID'] = fact['SITIO_DISPOSICION_ID'].fillna(0).astype(int)
+
     print("Tabla de hechos (fact) tras mapear dimensiones:")
     print(fact)
     print("Columnas de la tabla de hechos:")
     print(fact.columns)
+    print("Valores nulos en la tabla de hechos:")
+    print(fact[['TIPO_SITIO_DISPOSICION_FINAL_ADECUADA', 'NOMBRE_SITIO_DISPOSICION_FINAL_ADECUADA', 'TIPO_ADMINISTRADOR_SITIO_DISPOSICION_FINAL_ADECUADA']].isnull().sum())
 
     # Extraer la tabla de hechos final con las métricas y claves foráneas
     fact_final = fact[[
