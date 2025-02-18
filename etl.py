@@ -138,7 +138,7 @@ def create_fact_table(df_merged, dim_tiempo, dim_ubicacion, dim_municipalidad, d
                                      'NOMBRE_SITIO_DISPOSICION_FINAL_ADECUADA',
                                      'TIPO_ADMINISTRADOR_SITIO_DISPOSICION_FINAL_ADECUADA'], how='left')
 
-    fact['SITIO_DISPOSICION_ID'] = fact['SITIO_DISPOSICION_ID'].fillna(0).astype(int)
+    fact['SITIO_DISPOSICION_ID'] = fact['SITIO_DISPOSICION_ID'].fillna(1).astype(int)
 
     print("Tabla de hechos (fact) tras mapear dimensiones:")
     print(fact)
